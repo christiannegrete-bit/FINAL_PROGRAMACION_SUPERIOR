@@ -1,0 +1,157 @@
+# 📦 Sistema Inteligente de Reconocimiento de Componentes Electrónicos  
+### Arquitectura Modular · POO · IA · Pruebas Unitarias · Extensible · Limpio
+
+Este proyecto implementa un sistema completo y modular para el reconocimiento automático de componentes electrónicos usando visión artificial, con actualización de inventario en tiempo real y arquitectura orientada a objetos.  
+
+El diseño aplica principios de encapsulamiento, bajo acoplamiento, interfaces, polimorfismo, inyección de dependencias, arquitectura limpia y testabilidad.
+
+---
+
+# 📝 Notas Importantes sobre Uso de Google Vision API & Google Sheets API
+
+Este proyecto soporta dos funcionalidades externas opcionales:
+
+1. **Clasificación mediante Google Vision API**  
+2. **Gestión de inventario con Google Sheets API**
+
+Para mantener la seguridad del proyecto:
+
+### 🔒 **Ningún archivo de credenciales de Google está incluido en este repositorio.**  
+Esto incluye:
+
+- `service_account.json`
+- `google_credentials.json`
+- Cualquier archivo con claves privadas
+- Tokens OAuth
+
+Por políticas de Google, estos archivos **NO deben subirse jamás a GitHub** ni compartirse públicamente.
+
+### 🧑‍💻 Quien quiera usar estas funciones debe:
+
+1. Crear su propio proyecto en **Google Cloud Console**
+2. Activar manualmente las APIs requeridas:
+   - **Vision API**
+   - **Google Sheets API**
+   - **Google Drive API** (si se desea lectura/escritura segura)
+3. Generar un archivo **Service Account JSON**
+4. Descargarlo a su máquina
+5. Ubicarlo en una carpeta local del proyecto (ej: `/credenciales/`)
+6. Configurar la ruta exacta en el archivo `.env`:
+
+
+---
+
+# 🚫 Qué NO viene incluido en el proyecto
+
+Por seguridad y cumplimiento de políticas, NO se incluyen:
+
+- Credenciales Google
+- Tokens OAuth
+- Claves API
+- Modelos comerciales
+- Enlaces a cuentas de Google Cloud
+
+Cada desarrollador debe usar sus propias credenciales.
+
+---
+
+# 🧯 Riesgos si alguien sube accidentalmente sus credenciales
+
+Google automáticamente:
+
+- Detecta filtración
+- Invalida claves comprometidas
+- Puede bloquear el proyecto
+- Puede generar cargos no deseados
+
+Esto es responsabilidad del usuario, no del autor original del proyecto.
+
+---
+
+# 🪪 Requisitos Mínimos para Google Vision / Google Sheets
+
+### Para Vision API:
+- Activar “Cloud Vision API”
+- Roles necesarios:
+  - `roles/vision.user`
+- Archivo JSON de service account
+
+### Para Google Sheets:
+- Activar “Google Sheets API”
+- Activar “Google Drive API” (recomendado)
+- Roles:
+  - `roles/drive.file`
+  - `roles/sheets.writer`
+
+---
+
+# 📁 Uso de Google Sheets dentro del proyecto
+
+El módulo:
+
+
+requiere:
+
+- ID del documento de Google Sheets  
+- Permisos de escritura  
+- El documento debe tener las columnas:  
+
+
+Cualquier repositorio adicional puede agregarse intercambiando implementaciones de `IInventoryRepo`.
+
+---
+
+# 🚀 Integración en el sistema (.env)
+
+Ejemplo de configuración para Vision API:
+
+
+---
+
+# 🧩 Arquitectura General
+
+### **1. core/** – Lógica principal
+- `InferenceEngine`: procesa imagen → preprocesador → modelo → resultado final.
+
+### **2. infrastructure/** – Integración con el mundo real
+- `OpenCVCamera(ICamera)`
+- Modelos IA:
+  - `TMSavedModel(IModel)`  
+  - `GoogleVisionModel(IModel)`
+- Repos:
+  - Excel / JSON / GoogleSheets / MultiRepo
+
+### **3. ui/** – Interfaz gráfica
+- `TkDetailUI(IDetailUI)`
+
+### **4. app/** – Controlador principal
+- `AppController(IController)`
+
+### **5. config/** – Configuración
+- `.env`
+- `AppSettings`
+- `bootstrap.py`
+
+---
+
+# ✨ Características principales
+
+- Captura de video en tiempo real
+- Preprocesamiento TensorFlow
+- IA local o en la nube (Google Vision)
+- Inventario en Excel / JSON / Google Sheets
+- UI con Tkinter
+- Umbral de confianza configurable
+- Confirmación por múltiples frames
+- Arquitectura totalmente escalable
+- Pruebas con mocks
+
+---
+
+# ⚙ Instalación
+
+## Dependencias:
+
+```bash
+pip install -r requirements.txt
+pip install openpyxl
