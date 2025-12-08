@@ -155,3 +155,47 @@ Ejemplo de configuración para Vision API:
 ```bash
 pip install -r requirements.txt
 pip install openpyxl
+
+DIAGRAMA
+
+proyecto_vision_modular_final/
+    .env
+    README.me
+    interfaces.py
+    main.py
+    requirements.txt
+
+    app/
+        controller.py
+
+    config/
+        assets.py
+        bootstrap.py
+        env_loader.py
+        settings.py
+
+    core/
+        inference/
+            inference_engine.py
+        preprocessing/
+            Tm_preprocessor.py
+
+    infrastructure/
+        camera/
+            opencv_camera.py
+        model/
+            Tm_saved_model.py
+            google_vision_model.py
+        repo/
+            excel_inventory_repo.py
+            google_sheet_inventory_repo.py
+            json_inventory_repo.py
+            multi_inventory_repo.py
+
+    tests/
+        test_controller_mocks.py
+        test_inference_fake.py
+        tests_preprocessor.py
+
+    ui/
+        tk_detail_ui.py
