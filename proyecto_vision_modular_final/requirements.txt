@@ -1,0 +1,13 @@
+numpy
+opencv-python
+tensorflow
+pandas
+Pillow
+openpyxl
+matplotlib
+pytest
+google-cloud-vision
+gspread
+google-auth
+
+
